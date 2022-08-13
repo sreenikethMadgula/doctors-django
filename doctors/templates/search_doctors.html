@@ -9,14 +9,15 @@
         <h1>Search for Doctor</h1>
         <table id = "tabs" style="border-spacing: 30px;">
             <tr>
-                <td class = "tab-elements"><h1>General Physician</h1></td>
-                <td class = "tab-elements"><h1>Neuro Surgeon</h1></td>
-                <td class = "tab-elements"><h1>Eye Care</h1></td>
-                <td class = "tab-elements"><h1>Dermatologist</h1></td>
-                <td class = "tab-elements"><h1>ENT</h1></td>
-                <td class = "tab-elements"><h1>Dentist</h1></td>
-                <td class = "tab-elements"><h1>Gastroentrologist</h1></td>
-                <td class = "tab-elements"><h1>Gynecologist</h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='General' %}">General Physician</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Neuro' %}">Neuro Surgeon</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Opthal' %}">Eye Care</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Derma' %}">Dermatologist</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Cardio' %}">Cardiologist</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='ENT' %}">ENT</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Dentist' %}">Dentist</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Gastro' %}">Gastroentrologist</a></h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'category-doctors' category='Gynec' %}">Gynecologist</a></h1></td>
             </tr>
         </table>
         <center>

@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>
+            Category: {{ category }}
+        </title>
+    </head>
+    <body>
+        
+        {% for doctor in doctors %}
+            <!-- {{ doctor }} -->
+        
+            <ul style="list-style: none;">
+                <li><h1>Name: {{ doctor.name }}</h1></li>
+                <li><h3>Degree: {{ doctor.degree }}</h3></li>
+                <li><h3>Specialiazation:{{ doctor.specialization }}</h3></li>
+                <li><h3>Hospital: {{ doctor.hospital }}</h3></li>
+                <li><h3>Experience:{{ doctor.experience }}</h3></li>
+                <li><h3>Awards: {{ doctor.awards }}</h3></li>
+            </ul>
+            <p>
+                <center><a href="{% url 'doctor-profile' id=doctor.id %}"><button type="button">Profile</button></a></center>
+            </p>
+
+        {% endfor %}
+        
+        <br/><br/>
+        <hr>
+        <center>
+            {%if doctors.has_previous %}
+            <a href="?page=1">&laquo First </a>
+            <a href="?page={{ doctors.previous_page_number }}">Previous</a>
+            {% endif %}
+            
+            <!-- {{ doctors }} -->
+            Page {{ doctors.number }} of {{ doctors.paginator.num_pages }}
+    
+            {%if doctors.has_next %}
+            <a href="?page={{ venues.previous_page_number }}">Next</a>
+            <a href="?page={{ venues.paginator.num_pages }}">Last &raquo</a>
+            {% endif %}
+        </center>
+
+        
+
+        <p>
+            <center><a href="{% url 'home' %}"><button type="button">Home</button></a></center>
+        </p>
+    </body>
+</html>

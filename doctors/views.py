@@ -5,6 +5,7 @@ from django.template import loader,RequestContext
 from .models import Doctors
 from django.db.models import Q
 from django.views.decorators.csrf import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
@@ -80,4 +81,20 @@ def doctor_profile(request,id):
             request,
             HttpResponse("No profile found")
         )
-        
+
+# @csrf_exemptx``
+def category_doctors(request,category):
+
+    # set up pagination
+    doctor_list = Doctors.objects.filter(specialization__icontains=category)
+    p = Paginator(doctor_list, 5)
+    page = request.GET.get('page')
+    doctors = p.get_page(page)
+    return render(
+        request,
+        'category_doctors.html',
+        {
+            "doctors":doctors
+        }
+    )
+
