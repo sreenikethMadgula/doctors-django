@@ -1,13 +1,11 @@
 <html>
     <head>
         <title>
-            Category: {{ category }}
+            Search Results
         </title>
     </head>
     <body>
-        
         {% for doctor in doctors %}
-            <!-- {{ doctor }} -->
         
             <ul style="list-style: none;">
                 <li><h1>Name: {{ doctor.name }}</h1></li>
@@ -22,7 +20,6 @@
             </p>
 
         {% endfor %}
-        
         <br/><br/>
         <hr>
         <center>
@@ -39,8 +36,6 @@
             <a href="?page={{ venues.paginator.num_pages }}">Last &raquo</a>
             {% endif %}
         </center>
-
-        
 
         <p>
             <center><a href="{% url 'home' %}"><button type="button">Home</button></a></center>

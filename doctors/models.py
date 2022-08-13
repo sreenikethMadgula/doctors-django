@@ -13,3 +13,6 @@ class Doctors(models.Model):
     hospital = models.CharField(max_length=255)
     experience = models.IntegerField()
     awards = models.IntegerField(blank=True)
+
+    def __str__(self) -> str:
+        return self.name + ' ' + self.specialization
