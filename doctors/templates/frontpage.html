@@ -8,12 +8,23 @@
     <body>
         <table id = "tabs" style="border-spacing: 30px;">
             <tr>
-                <td class = "tab-elements"><h1>24x7 Doctor</h1></td>
+                <td class = "tab-elements"><h1><a href="{% url 'search-doctors' %}">24x7 Doctor</a></h1></td>
                 <td class = "tab-elements"><h1>Medicine</h1></td>
                 <td class = "tab-elements"><h1>Lab test</h1></td>
                 <td class = "tab-elements"><h1>Reminder</h1></td>
                 <td class = "tab-elements"><h1>Cart</h1></td>
             </tr>
         </table>
+        <center>
+            <form method="POST" action="{% url 'search-results' %}">
+                {% csrf_token %}
+
+                <input type="search" placeholder="Search doctors,specialiazations,hospitals" name="search_doctor_query" style="width:400px">
+                <button type="submit">Search</button> 
+            </form>
+            <!-- <p>
+                <a href="{% url 'home' %}"><button type="button">Home</button></a>
+            </p> -->
+        </center>
     </body>
 </html>

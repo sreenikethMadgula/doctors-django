@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>
+            Search Results
+        </title>
+    </head>
+    <body>
+        {% if search_doctor_query %}
+        <!-- <h1>You searched for {{ search_doctor_query }}</h1> -->
+        
+            {% for doctor in doctors %}
+                <!-- {{ doctor }} -->
+            
+                <ul style="list-style: none;">
+                    <li><h1>Name: {{ doctor.name }}</h1></li>
+                    <!-- <li><h3>Degree: {{ doctor.degree }}</h3></li> -->
+                    <li><h3>Specialiazation:{{ doctor.specialization }}</h3></li>
+                    <li><h3>Hospital: {{ doctor.hospital }}</h3></li>
+                    <!-- <li><h3>Experience:{{ doctor.experience }}</h3></li> -->
+                    <!-- <li><h3>Awards: {{ doctor.awards }}</h3></li> -->
+                </ul>
+                <p>
+                    <center><a href="{% url 'doctor-profile' id=doctor.id %}"><button type="button">Profile</button></a></center>
+                </p>
+
+            {% endfor %}
+
+            {% else %}
+            <h1>Not searched</h1>
+        {% endif %}
+        <p>
+            <center><a href="{% url 'home' %}"><button type="button">Home</button></a></center>
+        </p>
+    </body>
+</html>
