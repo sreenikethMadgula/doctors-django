@@ -1,20 +1,22 @@
-from pydoc import doc
 from re import search
+from unicodedata import name
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.template import loader,RequestContext
 from django.db.models import Q
 from django.views.decorators.csrf import *
 from django.core.paginator import Paginator
 
 # from doctors import serializers
-from .serializers import DoctorSerializer
 
-from .models import Doctors
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+
+from .serializers import DoctorSerializer, ProfileSerializer
+from .models import Doctors
+from .filters import DoctorFilter
 
 
 
@@ -148,12 +150,30 @@ def category_doctors(request,category):
 
 
 class DoctorList(APIView):
-    def get(self,requst):
+    # def get_query_set(self,)
+    def get(self,request):
         doctor_list = Doctors.objects.all()
+
+        specialization_query = request.GET.get("specialization")
+        hospital_query = request.GET.get("hospital")
+        doctor_name_query = request.GET.get("doctor-name")
+
+        print(specialization_query,hospital_query)
+
+        if specialization_query:
+            doctor_list = doctor_list.filter(specialization__icontains=specialization_query)
+        
+        if hospital_query:
+            doctor_list = doctor_list.filter(hospital__icontains=hospital_query)
+
+        if doctor_name_query:
+            doctor_list = doctor_list.filter(name__icontains=doctor_name_query)
+
         serializer = DoctorSerializer(doctor_list,many=True)
         return Response(serializer.data)
+
     def post(self,request):
-        serializer = DoctorSerializer(data=request.data)
+        serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
@@ -169,12 +189,12 @@ class DoctorProfile(APIView):
 
     def get(self,request,id):
         doctor = self.get_doctor_by_id(id)
-        serializer = DoctorSerializer(doctor)
+        serializer = ProfileSerializer(doctor)
         return Response(serializer.data)
-    
+
     def put(self,request,id):
         doctor = self.get_doctor_by_id(id)
-        serializer = DoctorSerializer(doctor, data=request.data)
+        serializer = ProfileSerializer(doctor, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -185,3 +205,32 @@ class DoctorProfile(APIView):
         doctor = self.get_doctor_by_id(id)
         doctor.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# for hospitals and specializations
+class Category(APIView): 
+    def get_doctor_by_category(self,category):
+        try:
+            return Doctors.objects.filter(specialization__icontains=category)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    def get(self,request,category):
+        doctors = self.get_doctor_by_category(category)
+
+        hospital_query = request.GET.get("hospital")
+        doctor_name_query = request.GET.get("doctor-name")
+
+        if hospital_query:
+            doctors = doctors.filter(hospital__icontains=hospital_query)
+
+        if doctor_name_query:
+            doctors = doctors.filter(name__icontrains=doctor_name_query)
+
+        serializer = DoctorSerializer(doctors,many=True)
+        return Response(serializer.data)
+
+
+'''
+    For now, since the table is populated by web scraping, the specializations are not standardized. 
+    When better table data is found, the endpoints can do a .get() rather than a .filter() for specializtions and hospitals
+'''

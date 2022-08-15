@@ -12,4 +12,6 @@ urlpatterns = [
     # path('doctors/<int:id>',views.doctor_profile),
     path('doctors/', views.DoctorList.as_view()),
     path('doctors/<int:id>', views.DoctorProfile.as_view()),
+    path('specialization/<category>',views.Category.as_view()),
+    # path('hospital/<hospital>',views.Hospital.as_view())),
 ]
