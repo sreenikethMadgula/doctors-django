@@ -5,8 +5,19 @@
         </title>
     </head>
     <body>
+        <style>
+            .page form,
+            .page form div {
+                display: inline;
+            }
+
+            .page button {
+                display: inline;
+                vertical-align: middle;
+            }
+        </style>
         {% if search_doctor_query %}
-        <!-- <h1>You searched for {{ search_doctor_query }}</h1> -->
+        <h1>You searched for {{ search_doctor_query }}</h1>
         
             {% for doctor in doctors %}
                 <!-- {{ doctor }} -->
@@ -24,6 +35,51 @@
                 </p>
 
             {% endfor %}
+
+            <br/><br/>
+            <hr>
+            <div class="page">
+
+                <center>
+                    <form method="POST" action="{% url 'search-results' %}?page=1">
+                        <input type="search" value={{search_doctor_query}} name="search_doctor_query" style="display: none;">
+                        <div>
+
+                            <button>&laquo First</button>
+                        </div>
+                    </form>
+                    {%if doctors.has_previous %}
+                    <form method="POST" action="{% url 'search-results' %}?page={{ doctors.previous_page_number }}">
+                        <input type="search" value={{search_doctor_query}} name="search_doctor_query" style="display: none;">
+                        <div>
+
+                            <button>Previous</button>
+                        </div>
+                    </form>    
+                    {% endif %}
+                    
+                    <!-- {{ doctors }} -->
+                    Page {{ doctors.number }} of {{ doctors.paginator.num_pages }}
+        
+                {%if doctors.has_next %}
+                <form method="POST" action="{% url 'search-results' %}?page={{ doctors.next_page_number }}">
+                    <input type="search" value={{search_doctor_query}} name="search_doctor_query" style="display: none;">
+                    <div>
+                        <button>Next</button>
+
+                    </div>
+                </form>
+                {% endif %}
+                
+                <form method="POST" action="{% url 'search-results' %}?page={{ doctors.paginator.num_pages }}">
+                    <input type="search" value={{search_doctor_query}} name="search_doctor_query" style="display: none;">
+                    <div>
+
+                        <button>Last &raquo</button>
+                    </div>
+                </form>
+            </center>
+        </div>
 
             {% else %}
             <h1>Not searched</h1>
