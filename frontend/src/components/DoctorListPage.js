@@ -33,7 +33,7 @@ export default function DoctorListPage(props) {
   return (
     <div>
       <NavBar />
-      <div className="heading">
+      {/* <div className="heading">
         if (props.search){
           <h1>Search results for: {search.query}</h1>
         }
@@ -48,6 +48,9 @@ export default function DoctorListPage(props) {
         for (doctor in props.doctors) {
           <DoctorCard doctor />
         }
+      </div> */}
+      <div className="heading">
+        <h1>24x7 Doctors</h1>
       </div>
     </div>
   );

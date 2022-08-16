@@ -1,22 +1,40 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import ReactDOM from "react-dom";
 import HomePage from "./HomePage";
-import NavBar from "./NavBar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import DoctorListPage from "./DoctorListPage";
+import SpecializationPage from "./SpecializationPage";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        {/* <HomePage /> */}
-        <NavBar />
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div>
+      {/* <HomePage /> */}
+      {/* <NavBar /> */}
+      <Router>
+				<Routes>
+					<Route path="/healthXOXO/" element={<HomePage />} />
+					<Route path='/healthXOXO/doctors' element={<DoctorListPage />} />
+					<Route path='/healthXOXO/specialization' element={<SpecializationPage />} />
+					<Route path='*' element={<Error />} />
+				</Routes>
+			</Router>
+      {/* <Router>
+        <HomePage />
+        <SpecializationPage />
+        <DoctorListPage />
+      </Router> */}
+    </div>
+  );
 }
 
 const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+ReactDOM.render(<App />, appDiv);
+
+if (module.hot) {
+  module.hot.accept()
+}

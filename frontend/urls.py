@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index),
     path('doctors', views.index),
     path('specialization', views.index),
+    # path(r'.*', views.index)
 ]

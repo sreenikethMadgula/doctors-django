@@ -12,7 +12,7 @@ html,body {
 }
 
 #main {
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     height: 100%;
     left: 0;
@@ -30,11 +30,15 @@ html,body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: static;
     /* background-color: #232f3e; */
     background-color: #21222A;
     width: 100%;
-    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1)
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    padding-top: 0;
     /* border-bottom: 5px solid rgb(90, 89, 89); */
     /* opacity: 70%; */
 }
@@ -47,18 +51,47 @@ html,body {
 .nav-items > li {
     padding: 10px;
     border-style: hidden;
-    /* border-width: thick; */
-    border-radius: 10px;
-    /* border-color: aqua; */
-    /* border-left: 5px solid rgb(4, 130, 121); */
-    /* border-right: 5px solid rgb(4, 130, 121); */
-    /* background-color: rgb(255, 183, 39); */
-    margin-left: 5px;
     color: #00B7A4;
     font-weight: 900;
     font-size: larger;
+    float: left;
+    text-decoration: none;    
+}
+
+/* .nav-items > li:link {
+    text-decoration: none;
+    color: #00B7A4;
+}
+.nav-items > li:visited {
+    text-decoration: none;
+
+}
+.nav-items > li:hover {
+    text-decoration: none;
+
+}
+.nav-items > li:active {
+
+} */
+
+/* .nav-items > li > Link {
+    text-decoration: none;
+} */
+
+/* Link {
+    text-decoration: none;
+} */
+
+.links {
+    text-decoration: none;
+    color: #00B7A4;
     
 }
+
+.links:hover {
+    color: #ff9501;
+}
+
 
 .search-bar {
     width: 600px;
@@ -94,9 +127,11 @@ html,body {
     /* margin-right: auto; */
 }
 
-/* .heading {
-
-} */
+.heading {
+    position:relative;
+    margin-left: 20px;
+    /* top: 200px; */
+}
 
 .doctor-card > ul {
     list-style: none;

@@ -5,7 +5,9 @@ export default function SpecializationPage() {
   return (
     <div>
       <NavBar />
-      <h1>Specialization</h1>
+      <div className="heading">
+        <h1>Specialiazation</h1>
+      </div>
     </div>
   );
 }

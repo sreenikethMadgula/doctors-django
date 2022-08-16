@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
     return(
-        
         <nav className="nav">
             <ul className="nav-items">
-                {/* <li><Link to="/">Home</Link></li>
-                <li><Link to="/doctors">24x7 Doctors</Link></li> */}
-                <li>Home</li>
-                <li>24x7 Doctors</li>
+                <li><Link to="/healthXOXO" className="links">Home</Link></li>
+                <li><Link to="/healthXOXO/doctors" className="links">24x7 Doctors</Link></li>
+                {/* <li>Home</li>
+                <li>24x7 Doctors</li> */}
                 <li>Medicine</li>
                 <li>Lab Test</li>
                 <li>Reminder</li>
@@ -22,5 +21,5 @@ export default function NavBar() {
                 </form>
             </div>
         </nav>
-    )
+    );
 }
