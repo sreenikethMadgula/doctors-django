@@ -1,15 +1,10 @@
 from re import search
-from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader,RequestContext
 from django.db.models import Q
-from django.views.decorators.csrf import *
 from django.core.paginator import Paginator
 
-# from doctors import serializers
 
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -121,19 +116,25 @@ class DoctorList(APIView):
         specialization_query = request.GET.get("specialization")
         hospital_query = request.GET.get("hospital")
         doctor_name_query = request.GET.get("doctor-name")
+        search_query = request.GET.get("search")
 
         print(specialization_query,hospital_query)
 
         if specialization_query:
             doctor_list = doctor_list.filter(specialization__icontains=specialization_query)
-        
+
         if hospital_query:
             doctor_list = doctor_list.filter(hospital__icontains=hospital_query)
 
         if doctor_name_query:
             doctor_list = doctor_list.filter(name__icontains=doctor_name_query)
+        
 
-        serializer = DoctorSerializer(doctor_list,many=True)
+
+        p = Paginator(doctor_list,5)
+        page = request.GET.get('page')
+        doctors = p.get_page(page)
+        serializer = DoctorSerializer(doctors,many=True)
         return Response(serializer.data)
 
     def post(self,request):

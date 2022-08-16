@@ -26,6 +26,16 @@ html,body {
     /* display: flex; */
 }
 
+/* Home */
+.home-middle {
+    color: #00B7A4;
+    font-size: 200px;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 100px;
+}
+
+/* NavBar */
 .nav {
     display: flex;
     justify-content: space-between;
@@ -55,32 +65,8 @@ html,body {
     font-weight: 900;
     font-size: larger;
     float: left;
-    text-decoration: none;    
+    /* text-decoration: none;     */
 }
-
-/* .nav-items > li:link {
-    text-decoration: none;
-    color: #00B7A4;
-}
-.nav-items > li:visited {
-    text-decoration: none;
-
-}
-.nav-items > li:hover {
-    text-decoration: none;
-
-}
-.nav-items > li:active {
-
-} */
-
-/* .nav-items > li > Link {
-    text-decoration: none;
-} */
-
-/* Link {
-    text-decoration: none;
-} */
 
 .links {
     text-decoration: none;
@@ -133,6 +119,48 @@ html,body {
     /* top: 200px; */
 }
 
-.doctor-card > ul {
+.doctor-card {
+    padding:10px;
+    border: 3px;
+    border-style: hidden;
+    /* display: flex; */
+    
+}
+
+
+
+.doctor-card-list > li{
+    /* border-top-color: black;
+    border-bottom-color: black; */
     list-style: none;
+}
+
+.profile-button {
+    display: inline;
+    position: relative;
+    padding: 10px;
+    margin-left: 40px;
+    /* float: right; */
+    /* margin-left: 200px; */
+    /* position: relative; */
+
+    /* float: right;   */
+    /* display: flex; */
+}
+
+.page-buttons {
+    align-self: center;
+    position: sticky;
+    /* display: inline; */
+    /* padding:10px; */
+    margin-left: 500px;
+    /* margin-bottom: 50px; */
+
+}
+
+.page-buttons > button {
+    padding: 10px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    position: sticky;
 }

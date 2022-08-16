@@ -12,16 +12,17 @@ import {
 } from "react-router-dom";
 
 
-export default function HomePage() {
+export default function HomePage(props) {
 	return(
 		<div className="home">
 			<NavBar />
-			<div className="heading">
+			{/* <div className="heading">
 				<h1>List of Doctors in Bangalore</h1>
-			</div>
+			</div> */}
 
-			{/* <Link to="/doctors">24x7 Doctors</Link> */}
-			{/* <Link to="/"></Link> */}
+			<div className="home-middle">
+				Health XoXo
+			</div>
 
 		</div>
 	);

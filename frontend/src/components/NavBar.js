@@ -1,14 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
+
 export default function NavBar() {
+    const [search,setSearch] = React.useState("");
+
+    const [searchParams,setSearchParams] = useState(
+        {
+            doctor_name : "",
+            specialization: "",
+            hospital: "",
+            search: "",
+        }
+    );
+
+    function addDoctorName(s) {
+        setSearchParams(...searchParams.doctor_name = s)
+    }
+    function addSpecialization(s) {
+        setSearchParams(...searchParams.specialization = s)
+    }
+    function addHospital(s) {
+        setSearchParams(...searchParams.hospital = s)
+    }
+
     return(
         <nav className="nav">
             <ul className="nav-items">
                 <li><Link to="/healthXOXO" className="links">Home</Link></li>
                 <li><Link to="/healthXOXO/doctors" className="links">24x7 Doctors</Link></li>
-                {/* <li>Home</li>
-                <li>24x7 Doctors</li> */}
                 <li>Medicine</li>
                 <li>Lab Test</li>
                 <li>Reminder</li>
