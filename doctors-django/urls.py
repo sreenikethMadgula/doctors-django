@@ -1,4 +1,4 @@
-"""healthXOXO URL Configuration
+"""doctors-django URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -19,5 +19,5 @@ from django.urls import include,path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('doctors/', include('doctors.urls')),
-    path('healthXOXO/', include('frontend.urls')),
+    path('doctors-django/', include('frontend.urls')),
 ]

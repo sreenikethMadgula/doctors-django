@@ -17,9 +17,9 @@ export default function App() {
       {/* <NavBar /> */}
       <Router>
 				<Routes>
-					<Route path="/healthXOXO/" element={<HomePage />} />
-					<Route path='/healthXOXO/doctors' element={<DoctorListPage />} />
-					<Route path='/healthXOXO/specialization' element={<SpecializationPage />} />
+					<Route path="/doctors-django/" element={<HomePage />} />
+					<Route path='/doctors-django/doctors' element={<DoctorListPage />} />
+					<Route path='/doctors-django/specialization' element={<SpecializationPage />} />
 					<Route path='*' element={<Error />} />
 				</Routes>
 			</Router>
